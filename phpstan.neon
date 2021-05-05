@@ -1,0 +1,8 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    excludes_analyse:
+        - src/DataFixtures
+    #ignoreErrors:
+        - '|Parameter #1 $question of method App\\Entity\\Answer::setQuestion(\) expects App\\Entity\\Question|null, object given.|'

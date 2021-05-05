@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+{{ include('menu.html.twig') }}
+
+    <main>  
+        <h1>Les sondages</h1> 
+
+        <p>Les P'Tit Sondages contiennent {{ nbTotalSondage }} sondages et a {{ nbSondageEnCour }} sondages en cours</p>
+
+
+        <h2>Sondages en cour</h2>
+
+        {% if currentQuestions is empty %}
+            <p>Il n'y a aucun sondage en cours pour le moment</p>
+        {% endif %}
+
+        {% for currentQuestion in currentQuestions %}
+
+            <div class="question">
+
+                <p>Question: {{ currentQuestion.question }}</p>
+                
+                <p>Choix multiple possible: 
+                    {% if currentQuestion.isMultipleChoice %}
+                        <img class="multipleChoiceTrue" src="{{ asset('img/coche-verte.jpg') }}" alt="coche verte">
+                    {% else %}
+                        <img class="multipleChoiceFalse" src="{{ asset('img/croix-rouge.png') }}" alt="croix rouge">
+                    {% endif %}
+                </p>
+
+                <p>Fin du sondage: {{ currentQuestion.endDate | date('d/m/Y') }} à {{ currentQuestion.endDate | date('H:i') }}</p>
+                
+                <a href="{{ path('reply_sondage', {'id': currentQuestion.id}) }}">Répondre au sondage</a>
+            </div>
+
+        {% endfor %}
+
+        <h2>Sondages terminés</h2>
+
+        {% if oldQuestions is empty %}
+            <p>Il n'y a aucun sondage terminé pour le moment</p>
+        {% endif %}
+
+        {% for oldQuestion in oldQuestions %}
+            <div>
+                <p>Question: {{ oldQuestion.question }}</p>
+                <p>Sondage finie le: {{ oldQuestion.endDate | date('d/m/Y') }} à {{ oldQuestion.endDate | date('H:i') }}</p>
+                <a href="#">Voir les résultats du sondage</a>
+            </div>
+        {% endfor %}
+
+    </main>
+
+{{ include('footer.html.twig') }}
+
+{% endblock %}

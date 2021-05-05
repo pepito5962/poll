@@ -1,0 +1,53 @@
+h1{
+    background-color: inherit;
+}
+a{
+    cursor: pointer;
+}
+.example-wrapper {
+    margin: 1em auto;
+    width: 90%;
+    font: 18px/1.5 sans-serif;
+}
+.example-wrapper code {
+    background: #F5F5F5;
+}
+.ligne{
+    display: flex;
+    height: auto;
+}
+#listeChampions .champion{
+    flex: 1;
+    text-align: center;
+    padding: 5% 0%;
+    position: relative;
+}
+#listeChampions .champion img{
+    height:100%
+}
+#listeChampions .champion a{
+}
+#listeChampions .champion h1{
+    width: 80%;
+    margin: 0% 10%;
+    padding-top: inherit;
+    margin-top: inherit;
+    background-color: darkblue;
+}
+#listeChampions .champion a:hover h1{
+    background-color: dodgerblue;
+}
+.freeTitre{
+    color: darkblue;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+#listeChampions .champion img
+{
+    border-radius: 3vh;
+    background-color: white;
+    transition: all .5s;
+}
+#listeChampions .champion a:hover img,#listeChampions .champion a:hover h1 {
+    transform: scale(1.05);
+}

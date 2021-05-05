@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace personnelle{% endblock %}
+
+{% block body %}
+
+{{ include('menu.html.twig') }}
+
+    <main>  
+        <h1>Votre espace utilisateur</h1>
+
+        <div>
+            <h2>Infos personelle</h2>
+
+            <p>Votre prénom : {{ user.firstName }}</p>
+
+            <p>Votre nom : {{ user.lastName }}</p>
+
+            <p>Email : {{ user.email }}</p>
+
+            <p>Votre mot de passe est crypté. C'est inutile de l'affiché mais vous pouvez le modifiez avec <a href="#">ce lien</a></p>
+
+            {% if user.isVerified %}
+                <p>Votre compte est vérifier ^^</p>
+            {% else %}
+                <p>Votre compte n'est toujours pas vérifié. Regardez vos mail svp</p>
+            {% endif %}
+
+        </div>
+
+        <div>
+            <h2>Vos sondages</h2>
+
+            <p>Vous avez crée {{ nbSondage }} sondages. {{ nbCurrentSondage }} sondages ne sont pas encore finie</p>
+
+            <a href="{{ path('app_create_sondage') }}">Créer un nouveau sondage</a>
+
+            {% if (currentQuestions is empty) and (oldQuestions is empty) %}
+
+                <p>Vous n'avez crée aucun sondages pour le moment <a href="{{ path('app_create_sondage') }}">Créer votre premier sondage</a></p>
+
+            {% else %}
+
+                <h3>Vos sondages en cour</h3>
+
+                {% if currentQuestions is empty %}
+                    <p>Vous n'avez pas de sondage en cour pour le moment</p>
+                {% endif %}
+
+                {% for currentQuestion in currentQuestions %}
+                    <div>
+                        <p>Question : {{ currentQuestion.question }}</p>
+                        <p>Date de fin de ce sondage : {{ currentQuestion.endDate | date('d/m/Y') }}</p>
+                        <a href="#">Modifier mon sondage</a>
+                        <a href="#">Supprimer mon sondage</a>
+                    </div>
+
+                {% endfor %}
+
+                <h3>Vos sondages terminés</h3>
+
+                {% if oldQuestions is empty %}
+                    <p>Vous n'avez pas de sondage terminé pour le moment</p>
+                {% endif %}
+
+                {% for oldQuestion in oldQuestions %}
+                    <div>
+                        <p>Question : {{ oldQuestion.question }}</p>
+                        <p>Sondage finie le : {{ oldQuestion.endDate | date('d/m/Y') }}</p>
+                        <a href="#">Voir le résultat du sondage</a>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
+
+    </main>
+
+{{ include('footer.html.twig') }}
+
+{% endblock %}

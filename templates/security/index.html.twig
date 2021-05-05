@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/asset/css/index.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/asset/css/rechercheInvocateur.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('/asset/css/header.css') }}" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+    <div class="connexionForm">
+        <h1>Inscription</h1>
+
+        {{ form_start(form) }}
+        <h2>{{ form_row(form.username, {'label':'Nom d\'utilisateur : ','attr':{'placeholder':'Nom d\'utilisateur'}}) }}</h2>
+        <h2>{{ form_row(form.summoner, {'label':'Invocateur : ','attr':{'placeholder':'Invocateur'}}) }}</h2>
+            <h2>{{ form_row(form.password, {'label':'Mot de Passe : ','attr':{'placeholder':'Mot de Passe'}}) }}</h2>
+            <h2>{{ form_row(form.confirm_password, {'label':'Confirmation Mot de Passe : ','attr':{'placeholder':'Confirmation'}}) }}</h2>
+        <button type="submit" class="btn">Inscription</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
