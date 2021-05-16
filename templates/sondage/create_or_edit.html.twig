@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create Sondage{% endblock %}
+{% block title %}
+    {% if editMode %}
+        Modifié Sondage
+    {% else %}
+        Créer Sondage
+    {% endif %}
+{% endblock %}
+
 
 {% block body %}
 
@@ -14,7 +21,12 @@
             {{ form_row(form.isMultipleChoice) }}
             {{ form_row(form.answer0) }}
             {{ form_row(form.answer1) }}
-            <button type="submit" class="btn" title="Publier ce sondage">Publier ce sondage</button>
+            {% if editMode %}
+                <button type="submit" class="btn" title="Publier ce sondage">Modifier ce sondage</button>
+            {% else %}
+                <button type="submit" class="btn" title="Publier ce sondage">Publier ce sondage</button>
+            {% endif %}
+            
         {{ form_end(form) }}
 
     </main>

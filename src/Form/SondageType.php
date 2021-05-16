@@ -2,18 +2,23 @@
 
 namespace App\Form;
 
+use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class CreateSondageType extends AbstractType
+class SondageType extends AbstractType
 {
-     
+     /**
+      * @param FormBuilderInterface $builder
+      * @param array<mixed> $options
+      * @return void
+      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('question', TextareaType::class, [
@@ -68,6 +73,8 @@ class CreateSondageType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+            'data_class' => Question::class
+        ]);
     }
 }

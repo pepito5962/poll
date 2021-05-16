@@ -164,7 +164,7 @@ class ForgotPasswordController extends AbstractController
     /**
      * Get the user ID and token from session
      *
-     * @return array
+     * @return array<string>
      */
     private function getCredentialsFromSession(): array
     {

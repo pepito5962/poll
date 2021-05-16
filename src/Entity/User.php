@@ -125,6 +125,16 @@ class User implements UserInterface
      */
     private $question;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Resultat::class, mappedBy="User")
+     */
+    private $resultats;
+
+    public function __construct()
+    {
+        $this->resultats = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -332,7 +342,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAccountMustBeVerifiedBefore(): ?\DateTimeImmutable
+    public function getAccountMustBeVerifiedBefore(): \DateTimeImmutable
     {
         return $this->accountMustBeVerifiedBefore;
     }
@@ -378,5 +388,35 @@ class User implements UserInterface
     public function isVerified(): bool
     {
         return $this->isVerified;
+    }
+
+    /**
+     * @return Collection|Resultat[]
+     */
+    public function getResultats(): Collection
+    {
+        return $this->resultats;
+    }
+
+    public function addResultat(Resultat $resultat): self
+    {
+        if (!$this->resultats->contains($resultat)) {
+            $this->resultats[] = $resultat;
+            $resultat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResultat(Resultat $resultat): self
+    {
+        if ($this->resultats->removeElement($resultat)) {
+            // set the owning side to null (unless already changed)
+            if ($resultat->getUser() === $this) {
+                $resultat->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

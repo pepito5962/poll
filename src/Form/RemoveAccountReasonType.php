@@ -2,28 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use App\Form\FormExtension\RepeatedPasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ResetPasswordType extends AbstractType
+class RemoveAccountReasonType extends AbstractType
 {
+    
     /**
+     * Undocumented function
+     *
      * @param FormBuilderInterface $builder
      * @param array<mixed> $options
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('password', RepeatedPasswordType::class);
+        $builder->add('reason', TextareaType::class, [
+            "required" => true,
+            "label" => "Pourquoi vous voulez suprimez ce compte"
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class
-        ]);
+        $resolver->setDefaults([]);
     }
 }

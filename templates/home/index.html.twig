@@ -34,7 +34,7 @@
 
                 <p>Fin du sondage: {{ currentQuestion.endDate | date('d/m/Y') }} à {{ currentQuestion.endDate | date('H:i') }}</p>
                 
-                <a href="{{ path('reply_sondage', {'id': currentQuestion.id}) }}">Répondre au sondage</a>
+                <a href="{{ path('app_reply_sondage', {'id': currentQuestion.id}) }}">Répondre au sondage</a>
             </div>
 
         {% endfor %}
@@ -49,7 +49,7 @@
             <div>
                 <p>Question: {{ oldQuestion.question }}</p>
                 <p>Sondage finie le: {{ oldQuestion.endDate | date('d/m/Y') }} à {{ oldQuestion.endDate | date('H:i') }}</p>
-                <a href="#">Voir les résultats du sondage</a>
+                <a href="{{ path('app_result_sondage', {'id': oldQuestion.id}) }}">Voir les résultats du sondage</a>
             </div>
         {% endfor %}
 

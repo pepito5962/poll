@@ -51,8 +51,8 @@
                     <div>
                         <p>Question : {{ currentQuestion.question }}</p>
                         <p>Date de fin de ce sondage : {{ currentQuestion.endDate | date('d/m/Y') }}</p>
-                        <a href="#">Modifier mon sondage</a>
-                        <a href="#">Supprimer mon sondage</a>
+                        <a href="{{ path('app_edit_sondage', {'id': currentQuestion.id}) }}">Modifier mon sondage</a>
+                        <a href="{{ path('app_delete_sondage', {'id': currentQuestion.id}) }}" onclick="return confirm('Ete vous sur de vouloir supprimez ce sondage?');">Supprimer mon sondage</a>
                     </div>
 
                 {% endfor %}
@@ -67,7 +67,7 @@
                     <div>
                         <p>Question : {{ oldQuestion.question }}</p>
                         <p>Sondage finie le : {{ oldQuestion.endDate | date('d/m/Y') }}</p>
-                        <a href="#">Voir le résultat du sondage</a>
+                        <a href="{{ path('app_result_sondage', {'id': oldQuestion.id}) }}">Voir le résultat du sondage</a>
                 {% endfor %}
 
             {% endif %}

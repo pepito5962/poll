@@ -6,7 +6,7 @@ Little website for surveys
 ## Project environment
 OS: Debian 10  
 PHP : version PHP 8.0.3  
-Database: MySQL   
+Database: MySQL  
 
 ## Run Project
 ### Create database
@@ -26,4 +26,5 @@ Run maildev: maildev --hide-extensions STARTTLS
 
 
 ## Contributor
-Erick Poix
+Erick Poix \
+Arthur Salengro

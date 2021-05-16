@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Répondre au sondage{% endblock %}
+
+
+{% block body %}
+
+{{ include('menu.html.twig') }}
+
+    <main>  
+        {{ form_start(form) }}
+
+            <p>Question: {{ question.question }}</p>
+            <fieldset>
+                <p> {{ answers[0].answer }}
+                {{ form_widget(form.answer0) }}
+            </fieldset>
+            <fieldset>
+                <p> {{ answers[1].answer }}
+                {{ form_widget(form.answer1) }}
+            </fieldset>
+
+            <button type="submit" class="btn" title="Envoyer ma reponse">Envoyer ma réponse</button>
+
+        {{ form_end(form) }}
+    </main>
+
+{{ include('footer.html.twig') }}
+
+{% endblock %}

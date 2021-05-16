@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+{{ include('menu.html.twig') }}
+
+    <main>
+
+        {{ form_start(form) }}
+
+            {{ form_row(form.reason) }}
+
+            <button type="submit" class="btn" title="Supprimer ce compte">Supprimer ce compte</button>
+
+        {{ form_end(form) }}
+
+    </main>
+
+{{ include('footer.html.twig') }}
+
+{% endblock %}

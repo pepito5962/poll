@@ -62,6 +62,11 @@ class QuestionRepository extends ServiceEntityRepository
                     ->getSingleScalarResult();
     }
 
+    /**
+     * Return current sondage
+     *
+     * @return array<Question>
+     */
     public function getCurrentQuestion(): array
     {
         return $this->createQueryBuilder('gcq')
@@ -73,6 +78,11 @@ class QuestionRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * Return end sondage
+     * 
+     * @return array<Question>
+     */
     public function getOldQuestion(): array
     {
         return $this->createQueryBuilder('goq')
@@ -83,6 +93,12 @@ class QuestionRepository extends ServiceEntityRepository
                     ->getResult();
     }
 
+    /**
+     * Return current sondage created by one user
+     *
+     * @param User $user
+     * @return array<Question>
+     */
     public function getCurrentQuestionByOneUser(User $user): array
     {
         return $this->createQueryBuilder('gcqbou')
@@ -98,6 +114,12 @@ class QuestionRepository extends ServiceEntityRepository
 
     }
 
+    /**
+     * Return end sondage created by one user
+     *
+     * @param User $user
+     * @return array<Question>
+     */
     public function getOldQuestionByOneUser(User $user): array
     {
         return $this->createQueryBuilder('goqbou')

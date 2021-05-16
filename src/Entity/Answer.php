@@ -31,9 +31,15 @@ class Answer
      */
     private $question;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Resultat::class, mappedBy="Answer", cascade={"remove"})
+     */
+    private $resultats;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
+        $this->resultats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,6 +67,36 @@ class Answer
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Resultat[]
+     */
+    public function getResultats(): Collection
+    {
+        return $this->resultats;
+    }
+
+    public function addResultat(Resultat $resultat): self
+    {
+        if (!$this->resultats->contains($resultat)) {
+            $this->resultats[] = $resultat;
+            $resultat->setAnswer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResultat(Resultat $resultat): self
+    {
+        if ($this->resultats->removeElement($resultat)) {
+            // set the owning side to null (unless already changed)
+            if ($resultat->getAnswer() === $this) {
+                $resultat->setAnswer(null);
+            }
+        }
 
         return $this;
     }

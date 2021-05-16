@@ -6,11 +6,21 @@
         <li>
             <a href="{{ path('app_home') }}">Home</a>
         </li>
-        <li>
-            {% if app.user %}
+        {% if app.user %}
+            <li>
                 <a href="{{ path('app_create_sondage') }}">Créer un sondage</a>
-            {% endif %}
-        </li>
+            </li>
+        {% endif %}
+        {% if app.user %}
+            <li>
+                <a href="{{ path('app_user_area') }}">Mon espace perso</a>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('app_user_admin') }}">Administration</a>
+            </li>
+        {% endif %}
         <li>
             {% if app.user %}
                 <a href="{{ path('app_logout') }}">Déconnexion</a>

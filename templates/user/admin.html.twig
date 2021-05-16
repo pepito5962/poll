@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+{{ include('menu.html.twig') }}
+
+    <main>
+
+        <h1>Page d'administration</h1>
+
+        <h2>Gestion des utilisateurs</h2>
+
+        {% for user in users %}
+            <div>
+                <p>Nom : {{ user.lastName }}</p>
+                <p>Prénom : {{ user.firstName }}</p>
+                <p>Email : {{ user.email }}</p>
+                <a href="{{ path('app_user_admin_delete', {'id': user.id }) }}" onclick="return confirm('Ete vous sur de vouloir supprimer cette utilisateur ?');">Supprimer cette utilisateur</a>
+            </div>
+        {% endfor %}
+
+    </main>
+
+{{ include('footer.html.twig') }}
+
+{% endblock %}
